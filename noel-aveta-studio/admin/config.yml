@@ -8,11 +8,11 @@ backend:
     uploadMedia: "Carica '{{path}}'"
     deleteMedia: "Elimina '{{path}}'"
 
-media_folder: "images/uploads"
+media_folder: "noel-aveta-studio/images/uploads"
 public_folder: "/images/uploads"
 
 # Logo visibile nel pannello di amministrazione
-logo_url: "/images/uploads/logo.png" # Modificalo con il percorso reale del logo se disponibile
+logo_url: "/images/uploads/logo.png"
 
 locale: "it"
 
@@ -22,7 +22,7 @@ collections:
     files:
       - label: "Homepage & Contenuti"
         name: "homepage"
-        file: "data/content.json"
+        file: "noel-aveta-studio/data/content.json"
         fields:
           - label: "Impostazioni SEO"
             name: "seo"
