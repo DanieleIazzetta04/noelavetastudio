@@ -1,0 +1,68 @@
+{
+  "seo": {
+    "title": "Noel Aveta Studio | Fotografia di ritratto & matrimoni",
+    "description": "Noel Aveta Studio specializzato in ritratti e matrimoni"
+  },
+  "hero": {
+    "subtitle": " "
+  },
+  "about": {
+    "title": "La prospettiva del ritratto",
+    "text": "Noel Aveta è uno studio fotografico di base a Roma, focalizzato sulla cattura di momenti autentici. Utilizziamo la luce naturale e un approccio minimalista per creare immagini senza tempo.\n\nOgni scatto è pensato per rivelare l'anima dei soggetti, in un'estetica che richiama l'alta moda e l'essenzialità editoriale.",
+    "image": "/images/uploads/Gemini_Generated_Image_o8ldigo8ldigo8ld.jpeg"
+  },
+  "services": [
+    {
+      "title": "Ritratti",
+      "price": "€150",
+      "description": "Sessione individuale in studio o in esterna. Include 10 foto post-prodotte ad alta risoluzione."
+    },
+    {
+      "title": "Matrimoni",
+      "price": "€1.200",
+      "description": "Copertura fotografica completa dell'evento. Consulenza preliminare e consegna di oltre 500 scatti formattati editorialmente."
+    },
+    {
+      "title": "Famiglia & Newborn",
+      "price": "€200",
+      "description": "Sessione in studio dedicata alle famiglie e ai neonati. Cura dei dettagli in un'atmosfera rilassata e intima."
+    }
+  ],
+  "gallery": [
+    {
+      "title": "Ritratto Editoriale",
+      "image": "/images/uploads/gallery-1.png",
+      "aspect": "vertical"
+    },
+    {
+      "title": "Matrimonio a Roma",
+      "image": "/images/uploads/gallery-2.png",
+      "aspect": "square"
+    },
+    {
+      "title": "Luce Naturale",
+      "image": "/images/uploads/gallery-3.png",
+      "aspect": "vertical"
+    },
+    {
+      "title": "Dettagli in studio",
+      "image": "/images/uploads/gallery-4.png",
+      "aspect": "square"
+    },
+    {
+      "title": "Ritratto Fine Art",
+      "image": "/images/uploads/gallery-5.png",
+      "aspect": "vertical"
+    },
+    {
+      "title": "Scatti rubati",
+      "image": "/images/uploads/gallery-6.png",
+      "aspect": "square"
+    }
+  ],
+  "contact": {
+    "email": "info@noelavetastudio.it",
+    "phone": "+39 333 1234567",
+    "instagram": "@noelaveta"
+  }
+}
