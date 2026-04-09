@@ -26,5 +26,42 @@
     
     <!-- Custom Preview Template -->
     <script src="/admin/preview.js"></script>
+
+    <!-- Fix mobile layout: rimuove gli stili inline del split pane -->
+    <script>
+      if (window.innerWidth <= 768) {
+        var style = document.createElement('style');
+        style.innerHTML = [
+          '* { box-sizing: border-box !important; }',
+          '.Pane, .Pane1, .Pane2, [class*="Pane"] {',
+          '  width: 100% !important; min-width: 0 !important;',
+          '  max-width: 100vw !important; position: static !important;',
+          '  transform: none !important; left: auto !important;',
+          '}',
+          '.Resizer, [class*="Resizer"] { display: none !important; }',
+          '[class*="SplitPane"], [class*="splitPane"] {',
+          '  flex-direction: column !important;',
+          '  width: 100% !important;',
+          '}',
+        ].join('\n');
+        document.head.appendChild(style);
+
+        // Osserva il DOM e corregge gli stili inline non appena vengono aggiunti
+        var observer = new MutationObserver(function(mutations) {
+          document.querySelectorAll('.Pane1, .Pane2').forEach(function(el) {
+            el.style.removeProperty('width');
+            el.style.removeProperty('left');
+            el.style.removeProperty('right');
+            el.style.removeProperty('position');
+            el.style.width = '100%';
+            el.style.position = 'static';
+          });
+          // Nascondi il secondo pannello (anteprima)
+          var pane2 = document.querySelector('.Pane2');
+          if (pane2) pane2.style.display = 'none';
+        });
+        observer.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['style'] });
+      }
+    </script>
   </body>
 </html>
