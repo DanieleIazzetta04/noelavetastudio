@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pannello di Controllo - Noel Aveta Studio</title>
+    <!-- Google Fonts per l'interfaccia Admin -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- CSS Personalizzato per nascondere tecnicismi e migliorare UI -->
+    <link rel="stylesheet" href="/admin/admin.css">
+    <!-- Include the identity widget -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  </head>
+  <body>
+    <!-- React scripts needed for Custom Preview Templates -->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    
+    <!-- Decap CMS main script -->
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    
+    <script>
+      // 0. Carica i font di Google direttamente nell'anteprima (IMPORTANTE per la tipografia editoriale)
+      CMS.registerPreviewStyle("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Oswald:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap");
+    </script>
+    
+    <!-- Custom Preview Template -->
+    <script src="/admin/preview.js"></script>
+  </body>
+</html>

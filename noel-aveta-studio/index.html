@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noel Aveta Studio | Fotografia di ritratto & matrimoni</title>
+    <meta name="description" content="Noel Aveta Studio specializzato in ritratti e matrimoni, con sede a Roma.">
+    
+    <!-- Open Graph SEO Data -->
+    <meta property="og:title" content="Noel Aveta Studio | Fotografia di ritratto & matrimoni" />
+    <meta property="og:description" content="Noel Aveta Studio specializzato in ritratti e matrimoni, con sede a Roma." />
+    <meta property="og:type" content="website" />
+    
+    <!-- Netlify Identity Widget -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+    <!-- Google Fonts: Oswald, Playfair Display, Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Oswald:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Vamilla CSS StyleSheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="custom-cursor"></div>
+
+    <!-- Header / Navbar -->
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Noel Aveta Studio</a>
+            
+            <!-- Mobile Menu Toggle Button -->
+            <button class="menu-toggle" id="mobile-menu-btn" aria-label="Menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <nav class="nav-links-wrapper" id="nav-wrapper">
+                <ul class="nav-links">
+                    <li><a href="#about">Chi Sono</a></li>
+                    <li><a href="#services">Servizi</a></li>
+                    <li><a href="#gallery">Galleria</a></li>
+                    <li><a href="#contact">Contatti</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Home / Hero Section (Minimal / Splash) -->
+        <section id="hero" class="hero-section">
+            <div class="hero-bg" id="hero-bg"></div>
+            <div class="hero-content fade-in" id="hero-content">
+                <h1 class="hero-title">NOEL AVETA<br>STUDIO</h1>
+            </div>
+        </section>
+
+        <!-- Wrapper for everything that scrolls OVER the Hero -->
+        <div class="content-wrapper" id="content-wrapper">
+
+        <!-- Chi Sono Section (2 Columns Grid) -->
+        <section id="about" class="about-section">
+            <div class="container about-grid">
+                <!-- Immagine con parallasse -->
+                <div class="about-image-wrapper fade-in">
+                    <div class="about-image parallax-bg" id="about-img"></div>
+                </div>
+                <!-- Testo di presentazione -->
+                <div class="about-text-wrapper fade-in">
+                    <h2 class="section-title" data-cms="about.title">La prospettiva del ritratto</h2>
+                    <div class="section-text" data-cms="about.text" data-type="text-multiline">
+                        <p>Noel Aveta è uno studio fotografico di base a Roma, focalizzato sulla cattura di momenti autentici. Utilizziamo la luce naturale e un approccio minimalista per creare immagini senza tempo.</p>
+                        <p>Ogni scatto è pensato per rivelare l'anima dei soggetti, in un'estetica che richiama l'alta moda e l'essenzialità editoriale.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Servizi Section (Editorial List) -->
+        <section id="services" class="services-section">
+            <div class="container">
+                <div class="services-header fade-in">
+                    <h2 class="section-title">Servizi</h2>
+                    <div class="services-line"></div>
+                </div>
+                
+                <div class="services-list" id="services-container">
+                    <!-- Servizi generati dinamicamente, fallback sotto -->
+                    <div class="service-row fade-in" style="cursor: pointer;" onclick="document.getElementById('service').value = 'Ritratti'; window.location.href='#contact';">
+                        <div class="service-number">01</div>
+                        <div class="service-content">
+                            <h3 class="service-title">Ritratti</h3>
+                            <p class="service-desc">Sessione individuale in studio o in esterna. Include 10 foto post-prodotte ad alta risoluzione.</p>
+                        </div>
+                        <div class="service-price">€150</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Galleria Section (CSS Masonry 3 Cols) -->
+        <section id="gallery" class="gallery-section">
+            <div class="container-fluid">
+                <h2 class="section-title text-center light-text fade-in">Galleria</h2>
+                <div class="gallery-masonry" id="gallery-container">
+                    <!-- These are placeholders if JS fails to fetch actual configured images -->
+                    <div class="gallery-item fade-in">
+                        <div class="img-placeholder bg-gray aspect-vertical"></div>
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Ritratto Editoriale</h3>
+                        </div>
+                    </div>
+                    <div class="gallery-item fade-in" style="transition-delay: 100ms;">
+                        <div class="img-placeholder bg-gray aspect-square"></div>
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Matrimonio a Roma</h3>
+                        </div>
+                    </div>
+                    <div class="gallery-item fade-in" style="transition-delay: 200ms;">
+                        <div class="img-placeholder bg-gray aspect-vertical"></div>
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Luce Naturale</h3>
+                        </div>
+                    </div>
+                    <div class="gallery-item fade-in" style="transition-delay: 300ms;">
+                        <div class="img-placeholder bg-gray aspect-square"></div>
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Dettagli Intimi</h3>
+                        </div>
+                    </div>
+                    <div class="gallery-item fade-in" style="transition-delay: 400ms;">
+                        <div class="img-placeholder bg-gray aspect-vertical"></div>
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Ritratto Fine Art</h3>
+                        </div>
+                    </div>
+                     <div class="gallery-item fade-in" style="transition-delay: 500ms;">
+                        <div class="img-placeholder bg-gray aspect-square"></div>
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Scatti Rubati</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contatti Section (Split Form Layout) -->
+        <section id="contact" class="contact-section">
+            <div class="container contact-grid">
+                <div class="contact-text fade-in">
+                    <h2 class="section-title">Prenota<br>una sessione</h2>
+                    <p class="contact-subtitle">Invia una richiesta per discutere il tuo progetto fotografico.</p>
+                    <div class="contact-info-list">
+                        <a href="mailto:info@noelavetastudio.it" class="contact-link" data-cms="contact.email">info@noelavetastudio.it</a>
+                        <a href="tel:+393331234567" class="contact-link" data-cms="contact.phone">+39 333 1234567</a>
+                        <a href="https://instagram.com/noelaveta" target="_blank" class="contact-link" data-cms="contact.instagram">@noelaveta</a>
+                    </div>
+                </div>
+                
+                <div class="contact-form-wrapper fade-in" style="transition-delay: 200ms;">
+                    <!-- Form compatibile con Netlify Forms -->
+                    <form name="booking" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/success.html" class="editorial-form">
+                        <!-- Campi nascosti richiesti da Netlify Forms -->
+                        <input type="hidden" name="form-name" value="booking">
+                        <p style="display:none">
+                            <label>Don't fill this out if you're human: <input name="bot-field"></label>
+                        </p>
+                        <div class="form-group">
+                            <input type="text" name="name" id="name" placeholder="Nome Completo" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" id="email" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <select name="service" id="service" required>
+                                <option value="" disabled selected>Servizio di interesse</option>
+                                <option value="Ritratti">Ritratti</option>
+                                <option value="Matrimoni">Matrimoni</option>
+                                <option value="Famiglia & Newborn">Famiglia & Newborn</option>
+                                <option value="Altro">Altro / Personalizzato</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" id="message" rows="4" placeholder="Parlami della tua idea..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">Invia Richiesta</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        </div><!-- chiusura content-wrapper -->
+    </main>
+
+    <!-- Minimal Copyright Bar -->
+    <footer class="footer">
+        <div class="container">
+            <!-- Copyright & Legal -->
+            <div class="footer-copyright">
+                <p>&copy; <span id="year"></span> Noel Aveta Studio. Tutti i diritti riservati. P.IVA 01234567890</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox (Full Screen Image Viewer) -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close" id="lightbox-close">&times;</span>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="Fullscreen image">
+            <h3 id="lightbox-caption" class="lightbox-caption"></h3>
+        </div>
+    </div>
+    
+    <!-- Script personalizzati (Parallax, Intersections, CMS data fetching) -->
+    <script src="js/main.js"></script>
+
+    <!-- Script Identity Widget per reindirizzare al login del CMS -->
+    <script>
+        if (window.netlifyIdentity) {
+            window.netlifyIdentity.on("init", user => {
+                if (!user) {
+                    window.netlifyIdentity.on("login", () => {
+                        document.location.href = "/admin/";
+                    });
+                }
+            });
+        }
+    </script>
+</body>
+</html>

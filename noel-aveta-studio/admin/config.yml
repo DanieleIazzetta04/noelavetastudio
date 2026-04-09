@@ -1,0 +1,77 @@
+backend:
+  name: git-gateway
+  branch: main # Ramo principale della repository
+  commit_messages:
+    create: "Crea {{collection}} '{{slug}}'"
+    update: "Aggiorna {{collection}} '{{slug}}'"
+    delete: "Elimina {{collection}} '{{slug}}'"
+    uploadMedia: "Carica '{{path}}'"
+    deleteMedia: "Elimina '{{path}}'"
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+# Logo visibile nel pannello di amministrazione
+logo_url: "/images/uploads/logo.png" # Modificalo con il percorso reale del logo se disponibile
+
+locale: "it"
+
+collections:
+  - name: "content"
+    label: "Contenuti del Sito"
+    files:
+      - label: "Homepage & Contenuti"
+        name: "homepage"
+        file: "data/content.json"
+        fields:
+          - label: "Impostazioni SEO"
+            name: "seo"
+            widget: "object"
+            collapsed: true
+            fields:
+              - {label: "Seo Title", name: "title", widget: "string", default: "Noel Aveta Studio | Fotografia di ritratto & matrimoni", hint: "Titolo che appare nella scheda del browser e su Google."}
+              - {label: "Seo Description", name: "description", widget: "text", default: "Noel Aveta Studio specializzato in ritratti e matrimoni, con sede a Roma.", hint: "Breve descrizione per i motori di ricerca (max 160 caratteri)."}
+          
+          - label: "Hero (Sezione Principale)"
+            name: "hero"
+            widget: "object"
+            collapsed: true
+            fields:
+              - {label: "Sottotitolo Hero", name: "subtitle", widget: "string", default: "Fotografia di ritratto & matrimoni · Roma", hint: "Testo che appare sotto al logo principale."}
+          
+          - label: "Chi Sono"
+            name: "about"
+            widget: "object"
+            collapsed: true
+            fields:
+              - {label: "Titolo", name: "title", widget: "string", default: "La prospettiva del ritratto"}
+              - {label: "Testo", name: "text", widget: "text", default: "Noel Aveta è uno studio fotografico di base a Roma, focalizzato sulla cattura di momenti autentici. Utilizziamo la luce naturale e un approccio minimalista per creare immagini senza tempo.\n\nOgni scatto è pensato per rivelare l'anima dei soggetti, in un'estetica che richiama l'alta moda e l'essenzialità editoriale.", hint: "Usa l'andata a capo (Invio) per creare paragrafi"}
+              - {label: "Foto Profilo", name: "image", widget: "image", required: false, hint: "Consigliato formato verticale, ottimizzato per il web."}
+
+          - label: "Servizi"
+            name: "services"
+            widget: "list"
+            collapsed: true
+            hint: "Aggiungi, rimuovi o riordina i servizi offerti."
+            fields:
+              - {label: "Titolo", name: "title", widget: "string"}
+              - {label: "Prezzo", name: "price", widget: "string", hint: "Es. 'su richiesta' opppure 'a partire da €500'"}
+              - {label: "Descrizione", name: "description", widget: "text"}
+
+          - label: "Galleria"
+            name: "gallery"
+            widget: "list"
+            collapsed: true
+            hint: "Aggiungi le foto che appariranno nel portfolio."
+            fields:
+              - {label: "Titolo Immagine", name: "title", widget: "string", hint: "Testo alternativo (Alt) utile per l'accessibilità e la SEO"}
+              - {label: "Immagine", name: "image", widget: "image"}
+
+          - label: "Contatti"
+            name: "contact"
+            widget: "object"
+            collapsed: true
+            fields:
+              - {label: "Email", name: "email", widget: "string", default: "info@noelavetastudio.it"}
+              - {label: "Telefono", name: "phone", widget: "string", default: "+39 333 1234567"}
+              - {label: "Instagram", name: "instagram", widget: "string", default: "@noelaveta"}

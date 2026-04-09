@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Richiesta inviata — Noel Aveta Studio</title>
+    <meta name="description" content="La tua richiesta di prenotazione è stata inviata con successo.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #fdfbf7;
+            --color-text: #0e1411;
+            --color-gray: #5c6e64;
+            --color-accent: #d4b55b;
+            --font-heading-bold: 'Oswald', sans-serif;
+            --font-heading-elegant: 'Playfair Display', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            height: 100%;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-body);
+        }
+
+        main {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .logo {
+            font-family: var(--font-heading-bold);
+            font-size: 1rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--color-gray);
+            margin-bottom: 5rem;
+        }
+
+        .icon {
+            width: 64px;
+            height: 64px;
+            border: 1px solid var(--color-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 3rem;
+        }
+
+        .icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--color-accent);
+            fill: none;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        h1 {
+            font-family: var(--font-heading-elegant);
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 400;
+            font-style: italic;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--color-text);
+        }
+
+        p {
+            font-size: 1rem;
+            font-weight: 300;
+            color: var(--color-gray);
+            line-height: 1.8;
+            max-width: 480px;
+            margin: 0 auto 3.5rem;
+        }
+
+        a.btn {
+            display: inline-block;
+            padding: 1.2rem 3.5rem;
+            background-color: var(--color-text);
+            color: var(--color-bg);
+            text-decoration: none;
+            font-family: var(--font-heading-bold);
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: background-color 0.4s ease;
+        }
+
+        a.btn:hover {
+            background-color: var(--color-accent);
+        }
+
+        .divider {
+            width: 1px;
+            height: 60px;
+            background-color: var(--color-accent);
+            margin: 0 auto 4rem;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <p class="logo">Noel Aveta Studio</p>
+
+        <div class="divider"></div>
+
+        <div class="icon">
+            <svg viewBox="0 0 24 24">
+                <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+        </div>
+
+        <h1>Richiesta ricevuta.</h1>
+
+        <p>
+            Ti ringraziamo per aver scritto. Ti risponderemo entro 24 ore per confermare la tua sessione o rispondere a qualsiasi domanda.
+        </p>
+
+        <a href="/" class="btn">Torna al sito</a>
+    </main>
+</body>
+</html>

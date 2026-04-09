@@ -1,0 +1,10 @@
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin/index.html"
+  status = 200
+
+# Headers per evitare problemi di cache sul json del CMS
+[[headers]]
+  for = "/data/content.json"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"

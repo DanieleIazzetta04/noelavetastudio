@@ -1,0 +1,238 @@
+/* 
+   Noel Aveta Studio - Ultra-Clear Minimalist Theme for Decap CMS 
+   Designed for maximum legibility, brightness, and ease of use.
+*/
+
+:root {
+  --cms-color-base: #222222; /* High-contrast text color */
+  --cms-color-primary: #333333; /* Dark gray for primary actions, sober and clear */
+  --cms-color-primary-hover: #111111;
+  --cms-color-bg: #f9f9fb; /* Very soft light gray/blue background for the dashboard */
+  --cms-color-sidebar: #ffffff; /* Pure white sidebar */
+  --cms-color-card: #ffffff; /* Pure white content cards */
+  --cms-border-color: #ebebeb; /* Soft delicate borders */
+  --cms-font-main: 'Montserrat', sans-serif;
+  --cms-border-radius: 6px;
+}
+
+/* 1. GLOBAL TYPOGRAPHY */
+body, [class*="nc-app"], [class*="nc-entryEditor"], [class*="Container"], button, input, textarea, h1, h2, h3, h4, span, p, a, div {
+  font-family: var(--cms-font-main) !important;
+  color: var(--cms-color-base) !important;
+}
+
+/* Hide default Decap scrollbars / style them clean */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent; 
+}
+::-webkit-scrollbar-thumb {
+  background: #dddddd; 
+  border-radius: 4px;
+}
+
+/* 2. TOP HEADER BAR */
+[class*="AppHeader"] {
+  background-color: #ffffff !important;
+  border-bottom: 1px solid var(--cms-border-color) !important;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.02) !important; /* Very subtle shadow */
+}
+
+/* Standard Logo color */
+[class*="AppHeader"] img {
+  filter: none !important;
+}
+
+[class*="AppHeaderSiteLink"], [class*="AppHeaderNavList"] a {
+  font-weight: 500 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  color: #666666 !important;
+  font-size: 13px !important;
+  transition: all 0.2s ease !important;
+}
+
+[class*="AppHeaderNavList"] a:hover {
+  color: var(--cms-color-primary) !important;
+}
+
+[class*="AppHeaderNavList"] a[class*="active"] {
+  color: var(--cms-color-primary) !important;
+  border-bottom: 2px solid var(--cms-color-primary) !important;
+}
+
+/* 3. MAIN DASHBOARD CONTENT AREA */
+[class*="AppMainContainer"] {
+  background-color: var(--cms-color-bg) !important;
+}
+
+[class*="CollectionTop"] {
+  background-color: transparent !important;
+}
+
+[class*="CollectionTopHeading"] {
+  font-weight: 600 !important;
+  letter-spacing: 0px !important;
+  color: var(--cms-color-base) !important;
+  font-size: 26px !important;
+  text-transform: none !important; /* Più chiaro e leggibile */
+}
+
+/* Sidebar styling */
+[class*="SidebarContainer"] {
+  background-color: var(--cms-color-sidebar) !important;
+  border-right: 1px solid var(--cms-border-color) !important;
+}
+
+[class*="SidebarHeading"] {
+  color: #888888 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+}
+
+[class*="SearchContainer"] input {
+  background-color: #f5f5f5 !important;
+  border: 1px solid transparent !important;
+  color: #333 !important;
+  border-radius: 8px !important;
+}
+
+[class*="SearchContainer"] input:focus {
+  border-color: #cccccc !important;
+  background-color: #ffffff !important;
+}
+
+[class*="SidebarNavLink"] {
+  border-radius: var(--cms-border-radius) !important;
+  border-left: 3px solid transparent !important;
+  color: #555555 !important;
+  font-weight: 500 !important;
+  background-color: transparent !important;
+}
+
+[class*="SidebarNavLink"]:hover {
+  background-color: #f4f4f4 !important;
+  color: var(--cms-color-base) !important;
+}
+
+[class*="SidebarNavLinkActive"] {
+  background-color: #ffffff !important;
+  color: var(--cms-color-base) !important;
+  font-weight: 600 !important;
+  border-left: 3px solid var(--cms-color-primary) !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03) !important;
+}
+
+/* Dashboard Cards */
+[class*="CardContainer"], [class*="EntryCard"] {
+  background-color: var(--cms-color-card) !important;
+  border-radius: var(--cms-border-radius) !important;
+  border: 1px solid var(--cms-border-color) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02) !important;
+  transition: all 0.2s ease !important;
+}
+
+[class*="CardContainer"]:hover, [class*="EntryCard"]:hover {
+  transform: translateY(-2px) !important;
+  border-color: #dddddd !important;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.05) !important;
+}
+
+[class*="CardTitle"] {
+  color: var(--cms-color-base) !important;
+  font-weight: 600 !important;
+}
+
+/* 4. EDITOR PANE */
+[class*="ControlPaneContainer"] {
+  background-color: #ffffff !important; /* Sfondo bianchissimo per scrivere bene */
+}
+
+/* Form Groups / Container */
+[class*="ControlContainer"] {
+  background-color: #ffffff !important;
+  border: 1px solid var(--cms-border-color) !important;
+  box-shadow: none !important;
+  border-radius: var(--cms-border-radius) !important;
+}
+
+/* Labels */
+[class*="ControlLabel"] {
+  color: #444444 !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  text-transform: none !important;
+  letter-spacing: 0px !important;
+  border-bottom: 1px solid #f0f0f0 !important;
+  padding-bottom: 10px !important;
+  margin-bottom: 15px !important;
+}
+
+/* Text Inputs / Textareas / Selects */
+[class*="ControlContainer"] input[type="text"], 
+[class*="ControlContainer"] textarea,
+[class*="ControlContainer"] select {
+  background-color: #fdfdfd !important;
+  color: #111111 !important;
+  border: 1px solid #dddddd !important;
+  border-radius: 6px !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  padding: 12px 14px !important;
+  transition: all 0.2s ease !important;
+}
+
+[class*="ControlContainer"] input:focus, 
+[class*="ControlContainer"] textarea:focus {
+  border-color: #888888 !important;
+  background-color: #ffffff !important;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05) !important;
+  outline: none !important;
+}
+
+/* Image Widget */
+[class*="ImageWrapper"] {
+  border: 1px dashed #cccccc !important;
+  background-color: #f9f9f9 !important;
+}
+
+/* Hints */
+[class*="Hint"] {
+  color: #666666 !important;
+  background-color: #f5f5f5 !important;
+  border-left: 2px solid #cccccc !important;
+  padding: 8px 12px !important;
+  font-size: 12px !important;
+}
+
+/* Buttons (Save / Publish) */
+[class*="Button"] {
+  font-family: var(--cms-font-main) !important;
+  font-weight: 600 !important;
+  border-radius: 6px !important; /* Meno smussati, più professionali */
+}
+
+[class*="ToolbarContainer"] {
+  background-color: #ffffff !important;
+  border-top: 1px solid var(--cms-border-color) !important;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.02) !important;
+}
+
+[class*="ToolbarContainer"] button[class*="css-"] {
+  background-color: var(--cms-color-primary) !important;
+  color: #ffffff !important;
+}
+
+[class*="ToolbarContainer"] button[class*="css-"]:hover {
+  background-color: var(--cms-color-primary-hover) !important;
+}
+
+/* Preview Pane Header */
+[class*="PreviewPaneContainer"] {
+  border-left: 1px solid var(--cms-border-color) !important;
+}
