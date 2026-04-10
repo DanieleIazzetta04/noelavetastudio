@@ -8,42 +8,42 @@
   },
   "about": {
     "title": "La prospettiva del ritratto",
-    "text": "Noel Aveta è uno studio fotografico di base a  Turriaco, focalizzato sulla cattura di momenti autentici. Utilizziamo la luce naturale e un approccio minimalista per creare immagini senza tempo.\n\nOgni scatto è pensato per rivelare l'anima dei soggetti, in un'estetica che richiama l'alta moda e l'essenzialità editoriale.",
+    "text": "Noel Aveta è uno studio fotografico di base a  Turriaco, focalizzato sulla cattura di momenti autentici. Specializzato in fotografia all'aperto e in studio. Utilizziamo la luce naturale e i giochi di colore creando immagini senza tempo. \n\nOgni scatto è pensato per rivelare l'anima dei soggetti, in un'atmosfera calda e semplice cogliendo l'essenzialità editoriale. \n\nL'obiettivo è quello di dare vita a ricordi da custodire per sempre.",
     "image": "/images/uploads/Gemini_Generated_Image_o8ldigo8ldigo8ld.jpeg"
   },
   "services": [
     {
       "title": "Ritratti",
       "price": "€150",
-      "description": "Sessione individuale in studio o in esterna. Include 10 foto post-prodotte ad alta risoluzione."
+      "description": "Sessione individuale in studio o in esterna. Include 10 foto post-prodotte ad alta risoluzione. Consegna in file digitale."
     },
     {
-      "title": "Battesimo/Comunione",
-      "price": "a partire da €650",
+      "title": "Battesimo & Comunione",
+      "price": "a partire da €700",
       "description": "Copertura fotografica completa dell'evento. Consulenza preliminare e consegna di scatti formattati editorialmente. \nPossibilità di scelta per i vari pacchetti: \n° Reportage della celebrazione in chiesa.\n°All inclusive (dai preparativi in casa al ricevimento).\n° Anteprima baby. \nAlbum professionale personalizzabile, stampato su carta fotografica. Cura nei dettagli e nella rilegatura. \n"
     },
     {
       "title": "Famiglia & Newborn",
       "price": "€250",
       "description": "Sessione in studio o all'aperto (su richiesta del cliente) dedicata alle famiglie. Gli scatti racconteranno l'amore, l'unione e i momenti autentici, catturando le emozioni reali senza pose. \nCura dei dettagli in un'atmosfera rilassata e intima.  \n\nLa fotografia Newborn si incentra sul neonato tra i suoi primi dieci-venti giorni di vita, ritraendolo in pose delicate con l'uso di una luce naturale. Catturando il legame familiare ,momenti emozionali e dolci ricordi da custodire per sempre.   "
+    },
+    {
+      "title": "Sessione Maternity",
+      "description": "Shooting fotografico per la gravidanza che si realizza tra il settimo-ottavo mese. Il servizio si dedica alla bellezza del corpo che cambia e una nuova vita che nasce. Accompagnando la neomamma a fotografare gli ultimi attimi di questi dolci ricordi da poter riguardare per sempre.  ",
+      "price": "a partire da €250"
+    },
+    {
+      "title": "Shooting Festività",
+      "description": "Sessione dedicata ai bambini e/o alle famiglie (su richiesta del cliente) per servizi fotografici di varie festività.\nQuali Natale, Carnevale, Pasqua.. \nTemi personalizzati e lavorati accuratamente in post-produzione. \nIl servizio comprende scenografie e oggetti di scena selezionati con cura e professionalità. Musica a tema e consegna di file digitali lavorati nei dettagli con aggiunta di effetti speciali.  \nIl preso può variare in base alle richieste del cliente. ",
+      "price": "a partire da €70"
+    },
+    {
+      "title": "Compleanni & Feste",
+      "price": "a partire da €150",
+      "description": "Servizio fotografico individuale in studio o all'aperto. Personalizzato su richiesta. \nAttenzione nella cura dei dettagli.\nServizio disponibile dai più piccoli ai più grandi di tutte l'età. \nScatti lavorati e formattati editorialmente. "
     }
   ],
   "gallery": [
-    {
-      "title": "Ritratto Editoriale",
-      "image": "/images/uploads/gallery-1.png",
-      "aspect": "vertical"
-    },
-    {
-      "title": "Matrimonio a Roma",
-      "image": "/images/uploads/gallery-2.png",
-      "aspect": "square"
-    },
-    {
-      "title": "Luce Naturale",
-      "image": "/images/uploads/gallery-3.png",
-      "aspect": "vertical"
-    },
     {
       "title": "Dettagli in studio",
       "image": "/images/uploads/gallery-4.png",
@@ -62,7 +62,7 @@
   ],
   "contact": {
     "email": "info@noelavetastudio.it",
-    "phone": "+39 333 1234567",
+    "phone": "+39 3894837482",
     "instagram": "@noelaveta"
   }
 }
