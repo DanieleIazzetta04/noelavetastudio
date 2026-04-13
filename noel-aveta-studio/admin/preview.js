@@ -4,7 +4,7 @@ CMS.registerPreviewStyle("/css/style.css");
 // Helper function to create HTML lines for text-multiline
 function renderMultilineText(text) {
   if (!text) return '';
-  return text.split('\n').filter(p => p.trim() !== '').map(p => '<p>' + p + '</p>').join('');
+  return text.split('\n').filter(function(p) { return p.trim() !== ''; }).map(function(p) { return '<p>' + p + '</p>'; }).join('');
 }
 
 // 2. Crea un layout visuale personalizzato per la "Homepage Edit"
@@ -56,7 +56,8 @@ var HomepagePreview = createClass({
           ),
           h('div', { className: 'services-list' },
             (data.services || []).map(function(service, index) {
-              var numStr = (index + 1).toString().padStart(2, '0');
+              var n = (index + 1).toString();
+              var numStr = n.length < 2 ? '0' + n : n;
               return h('div', { className: 'service-row ' + visibleClass, key: index },
                 h('div', { className: 'service-number' }, numStr),
                 h('div', { className: 'service-content' },
