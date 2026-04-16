@@ -15,17 +15,42 @@
     {
       "title": "Ritratti",
       "price": "€150",
-      "description": "Sessione individuale in studio o in esterna. Include 10 foto post-prodotte ad alta risoluzione. Consegna in file digitale."
+      "description": "Sessione individuale in studio o in esterna.\nInclude 10 foto post-prodotte ad alta risoluzione.\nConsegna in file digitale."
     },
     {
       "title": "Battesimo & Comunione",
       "price": "a partire da €700",
-      "description": "Copertura fotografica completa dell'evento. Consulenza preliminare e consegna di scatti formattati editorialmente. \nPossibilità di scelta per i vari pacchetti: \n° Reportage della celebrazione in chiesa.\n°All inclusive (dai preparativi in casa al ricevimento).\n° Anteprima baby. \nAlbum professionale personalizzabile, stampato su carta fotografica. Cura nei dettagli e nella rilegatura. \n"
+      "description": "Copertura fotografica completa dell'evento. Consulenza preliminare e consegna di scatti formattati editorialmente. \nPossibilità di scelta per i vari pacchetti: \n° Reportage della celebrazione in chiesa.\n° All inclusive (dai preparativi in casa al ricevimento).\n° Anteprima baby. \nAlbum professionale personalizzabile, stampato su carta fotografica. Cura nei dettagli e nella rilegatura. \n"
     },
     {
       "title": "Famiglia & Newborn",
       "price": "€250",
       "description": "Sessione in studio o all'aperto (su richiesta del cliente) dedicata alle famiglie. Gli scatti racconteranno l'amore, l'unione e i momenti autentici, catturando le emozioni reali senza pose. \nCura dei dettagli in un'atmosfera rilassata e intima.  \n\nLa fotografia Newborn si incentra sul neonato tra i suoi primi dieci-venti giorni di vita, ritraendolo in pose delicate con l'uso di una luce naturale. Catturando il legame familiare ,momenti emozionali e dolci ricordi da custodire per sempre.   "
+    },
+    {
+      "title": "Maternity",
+      "price": "a partire da 250€",
+      "description": "Sessione dedicata alla gravidanza , celebrando la dolce attesa ,la bellezza del corpo che fa spazio a una nuova vita ancor prima della nascita. \nRacchiude la femminilità, emozioni, amore e dolcezza in ricordi duraturi. \n\nIl servizio viene svolto all'aperto catturando la luce naturale e delicata che cade sul pancione. Oppure in studio su richiesta del cliente. \n"
+    },
+    {
+      "title": "Sessioni Festività",
+      "description": "Shooting fotografici a tema dai più piccoli ai più grandi.  \nCi divertiamo a ricreare scenografie a tema con oggetti di scena scelti e selezionati accuratamente.\nL'obiettivo è quello di creare un'atmosfera piacevole e divertente per il bambino e per tutta la famiglia. \nSessioni Festività include tutte le festività annuali : Natale, Carnevale, Pasqua ecc.  \nIl servizio è aperto da uno a più bambini o all'intera famiglia. \nIl prezzo può variare in base alle richieste del cliente. \n",
+      "price": "a partire da 80€"
+    },
+    {
+      "title": "Feste & Compleanni",
+      "price": "a partire da 150€",
+      "description": "Il prezzo può variare in base alla richiesta del cliente. \n\n° Il servizio comprende scatti individuali personalizzati all'esterno o in studio. \nScenografia a tema o personalizzato se richiesto. \n\n° Reportage dell'intera festa, catturando momenti spontanei e emozioni da ricordare per sempre. "
+    },
+    {
+      "title": "Idea Regalo per Tutti",
+      "description": "Idea regalo è versatile, puoi utilizzarlo per qualsiasi evento. \nNasce per aiutarti a trovare il regalo giusto. \nRegala a chi vuoi bene una mini sessione fotografica individuale o con chi vuoi per immortalare momenti unici e indimenticabili e perchè no, anche divertenti. \n\nAdatta per la festa della mamma , del papà, la festa della donna, la festa dell'uomo, San Valentino, regalo di compleanno.\n\nCogli l'occasione sorprendendo chi ami.!!!",
+      "price": "Su richiesta"
+    },
+    {
+      "title": "Nonni",
+      "price": "150€",
+      "description": "Shooting all'aperto o nella propria abitazione(se richiesto).\n\nI Nonni è un servizio che da vita e importanza alle radici, incoraggiando il rispetto, l'amore e il sostegno. \nRitrae due persone che si sono amate e che si amano ancora oltre i confini, oltre le circostanze, oltre la vita. Un'amore che non si misura ma si amplifica modificandosi così nel tempo, trasmetendo e insegnando alle generazioni future. "
     }
   ],
   "gallery": [
