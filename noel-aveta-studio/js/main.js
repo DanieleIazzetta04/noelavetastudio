@@ -6,7 +6,12 @@ if ('scrollRestoration' in history) {
 // Forza scroll in cima sia all'avvio sia dopo il caricamento completo
 window.scrollTo(0, 0);
 window.onload = function() {
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    try {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    } catch (e) {
+        // Fallback per browser vecchi che non supportano ScrollToOptions
+        window.scrollTo(0, 0);
+    }
 };
 
 // Prima di lasciare la pagina, reset posizione così al ritorno parte dall'alto
@@ -14,98 +19,119 @@ window.addEventListener('beforeunload', function() {
     window.scrollTo(0, 0);
 });
 
-document.addEventListener('DOMContentLoaded', () => {
+// Helper compatibile per padStart (non supportato in IE11 / Chrome <57)
+function padLeft2(num) {
+    var s = num.toString();
+    return s.length < 2 ? '0' + s : s;
+}
+
+// Helper HTML-escape per evitare XSS da contenuti CMS
+function escapeHtml(str) {
+    if (str == null) return '';
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+document.addEventListener('DOMContentLoaded', function() {
     /* =========================================================================
        1. Custom Cursor
        ========================================================================= */
-    const cursor = document.getElementById('custom-cursor');
-    const hoverElements = document.querySelectorAll('a, button, input, select, textarea, .service-row, .gallery-item');
-    
+    var cursor = document.getElementById('custom-cursor');
+    var hoverElements = document.querySelectorAll('a, button, input, select, textarea, .service-row, .gallery-item');
+
     // Controlla se il dispositivo è touch
-    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    var isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
     if (!isTouchDevice && cursor) {
         // Segue il mouse
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+        document.addEventListener('mousemove', function(e) {
+            cursor.style.transform = 'translate(' + e.clientX + 'px, ' + e.clientY + 'px)';
         });
 
         // Hover effect sugli elementi interattivi
-        hoverElements.forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        hoverElements.forEach(function(el) {
+            el.addEventListener('mouseenter', function() { cursor.classList.add('hover'); });
+            el.addEventListener('mouseleave', function() { cursor.classList.remove('hover'); });
         });
     }
 
     /* =========================================================================
        2. Navbar & Mobile Menu
        ========================================================================= */
-    const navbar = document.getElementById('navbar');
-    const mobileBtn = document.getElementById('mobile-menu-btn');
-    const navWrapper = document.getElementById('nav-wrapper');
-    const navLinksList = document.querySelectorAll('.nav-links a');
+    var navbar = document.getElementById('navbar');
+    var mobileBtn = document.getElementById('mobile-menu-btn');
+    var navWrapper = document.getElementById('nav-wrapper');
+    var navLinksList = document.querySelectorAll('.nav-links a');
 
     // Cambia navbar on scroll
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 80) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    });
+    if (navbar) {
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 80) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    }
 
     // Toggle menu mobile
-    mobileBtn.addEventListener('click', () => {
-        mobileBtn.classList.toggle('active');
-        navWrapper.classList.toggle('active');
-        navbar.classList.toggle('force-dark');
-    });
+    if (mobileBtn && navWrapper && navbar) {
+        mobileBtn.addEventListener('click', function() {
+            mobileBtn.classList.toggle('active');
+            navWrapper.classList.toggle('active');
+            navbar.classList.toggle('force-dark');
+        });
+    }
 
     // Chiudi menu al click sui link
-    navLinksList.forEach(link => {
-        link.addEventListener('click', () => {
-            mobileBtn.classList.remove('active');
-            navWrapper.classList.remove('active');
-            navbar.classList.remove('force-dark');
+    navLinksList.forEach(function(link) {
+        link.addEventListener('click', function() {
+            if (mobileBtn) mobileBtn.classList.remove('active');
+            if (navWrapper) navWrapper.classList.remove('active');
+            if (navbar) navbar.classList.remove('force-dark');
         });
     });
 
     /* =========================================================================
        3. Parallax Nativo (Cinematic Scroll)
        ========================================================================= */
-    const heroBg = document.getElementById('hero-bg');
-    const heroContent = document.getElementById('hero-content');
-    const aboutImg = document.getElementById('about-img');
+    var heroBg = document.getElementById('hero-bg');
+    var heroContent = document.getElementById('hero-content');
+    var aboutImg = document.getElementById('about-img');
 
     // Variabile per ottimizzare le performance con RequestAnimationFrame
-    let ticking = false;
+    var ticking = false;
 
-    window.addEventListener('scroll', () => {
+    window.addEventListener('scroll', function() {
         if (!ticking) {
-            window.requestAnimationFrame(() => {
-                const scrollY = window.scrollY;
-                
-                // Parallax Hero 
+            window.requestAnimationFrame(function() {
+                var scrollY = window.scrollY;
+
+                // Parallax Hero
                 if (scrollY < window.innerHeight) {
                     if (heroBg) {
                         // Lo sfondo scala leggermente e scende piano
-                        heroBg.style.transform = `translateY(${scrollY * 0.3}px) scale(${1 + scrollY * 0.0005})`;
+                        heroBg.style.transform = 'translateY(' + (scrollY * 0.3) + 'px) scale(' + (1 + scrollY * 0.0005) + ')';
                     }
                     if (heroContent) {
                         // Il testo scende più rapidamente e sfuma
-                        heroContent.style.transform = `translateY(${scrollY * 0.5}px)`;
+                        heroContent.style.transform = 'translateY(' + (scrollY * 0.5) + 'px)';
                         heroContent.style.opacity = 1 - (scrollY / (window.innerHeight * 0.7));
                     }
                 }
-                
+
                 // Parallax Immagine "Chi Sono"
                 if (aboutImg) {
-                    const rect = aboutImg.parentElement.getBoundingClientRect();
+                    var rect = aboutImg.parentElement.getBoundingClientRect();
                     // Calcola solo se nel viewport
                     if (rect.top < window.innerHeight && rect.bottom > 0) {
-                        const distance = window.innerHeight - rect.top;
+                        var distance = window.innerHeight - rect.top;
                         // Sposta leggermente verso il basso mentre si scrolla
-                        aboutImg.style.transform = `translateY(${distance * 0.15 - 50}px)`;
+                        aboutImg.style.transform = 'translateY(' + (distance * 0.15 - 50) + 'px)';
                     }
                 }
                 ticking = false;
@@ -117,173 +143,203 @@ document.addEventListener('DOMContentLoaded', () => {
     /* =========================================================================
        4. Fade-in con Intersection Observer API
        ========================================================================= */
-    const fadeElements = document.querySelectorAll('.fade-in');
-    
-    const observerOptions = {
+    var fadeElements = document.querySelectorAll('.fade-in');
+
+    var observerOptions = {
         root: null,
         rootMargin: '0px',
         threshold: 0.15
     };
 
-    const fadeObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target); // Anima solo la prima volta
-            }
-        });
-    }, observerOptions);
+    var fadeObserver = null;
+    if (typeof IntersectionObserver !== 'undefined') {
+        fadeObserver = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Anima solo la prima volta
+                }
+            });
+        }, observerOptions);
 
-    fadeElements.forEach(el => fadeObserver.observe(el));
+        fadeElements.forEach(function(el) { fadeObserver.observe(el); });
+    } else {
+        // Fallback per browser senza IntersectionObserver: mostra tutto subito
+        fadeElements.forEach(function(el) { el.classList.add('visible'); });
+    }
 
     /* =========================================================================
        5. CMS Data Fetching & Populating (Dynamic Content)
        ========================================================================= */
-    const fetchCMSData = async () => {
-        try {
-            // Decap CMS salva i dati qui secondo config.yml
-            const response = await fetch('data/content.json');
-            if (!response.ok) return; // Fallback al contenuto dell'HTML
-            const data = await response.json();
-            
-            // Helper function per risoluzione "seo.title" etc.
-            const resolvePath = (obj, path) => path.split('.').reduce((o, i) => (o ? o[i] : undefined), obj);
+    function fetchCMSData() {
+        if (typeof fetch === 'undefined') return; // Browser troppo vecchio, mantieni HTML statico
 
-            // 1. Update Testi normali
-            document.querySelectorAll('[data-cms]').forEach(el => {
-                const configPath = el.getAttribute('data-cms');
-                const contentType = el.getAttribute('data-type');
-                const value = resolvePath(data, configPath);
-                
-                if (value) {
-                    if (contentType === 'text-multiline') {
-                        el.innerHTML = value.split('\n').filter(p => p.trim() !== '').map(p => `<p>${p}</p>`).join('');
-                    } else if (el.tagName === 'A' && el.classList.contains('contact-link')) {
-                        el.textContent = value;
-                        if(configPath === 'contact.email') el.href = `mailto:${value}`;
-                        if(configPath === 'contact.phone') el.href = `tel:${value.replace(/\s/g, '')}`;
-                        if(configPath === 'contact.instagram') el.href = `https://instagram.com/${value.replace('@', '')}`;
-                    } else {
-                        el.textContent = value;
+        fetch('data/content.json')
+            .then(function(response) {
+                if (!response.ok) throw new Error('not ok');
+                return response.json();
+            })
+            .then(function(data) {
+                // Helper function per risoluzione "seo.title" etc.
+                function resolvePath(obj, path) {
+                    return path.split('.').reduce(function(o, i) { return (o ? o[i] : undefined); }, obj);
+                }
+
+                // 1. Update Testi normali
+                document.querySelectorAll('[data-cms]').forEach(function(el) {
+                    var configPath = el.getAttribute('data-cms');
+                    var contentType = el.getAttribute('data-type');
+                    var value = resolvePath(data, configPath);
+
+                    if (value) {
+                        if (contentType === 'text-multiline') {
+                            el.innerHTML = String(value).split('\n')
+                                .filter(function(p) { return p.trim() !== ''; })
+                                .map(function(p) { return '<p>' + escapeHtml(p) + '</p>'; })
+                                .join('');
+                        } else if (el.tagName === 'A' && el.classList.contains('contact-link')) {
+                            el.textContent = value;
+                            if (configPath === 'contact.email') el.href = 'mailto:' + value;
+                            if (configPath === 'contact.phone') el.href = 'tel:' + String(value).replace(/\s/g, '');
+                            if (configPath === 'contact.instagram') el.href = 'https://instagram.com/' + String(value).replace('@', '');
+                        } else {
+                            el.textContent = value;
+                        }
+                    }
+                });
+
+                document.querySelectorAll('[data-cms-mailto]').forEach(function(el) {
+                    var value = resolvePath(data, el.getAttribute('data-cms-mailto'));
+                    if (value) el.href = 'mailto:' + value;
+                });
+
+                // 2. Update Immagine Profilo "Chi Sono"
+                if (data.about && data.about.image && data.about.image.trim() !== '') {
+                    var aboutImgEl = document.getElementById('about-img');
+                    if (aboutImgEl) {
+                        // Gestione path assoluti/relativi
+                        var imgSrc = data.about.image.replace(/^\/?images/, 'images');
+                        aboutImgEl.style.backgroundImage = "url('" + imgSrc + "')";
                     }
                 }
-            });
 
-            document.querySelectorAll('[data-cms-mailto]').forEach(el => {
-                 const value = resolvePath(data, el.getAttribute('data-cms-mailto'));
-                 if(value) el.href = `mailto:${value}`;
-            });
+                // 3. Update Servizi
+                if (data.services && data.services.length > 0) {
+                    var servicesContainer = document.getElementById('services-container');
+                    if (servicesContainer) {
+                        servicesContainer.innerHTML = ''; // Svuota placeholder
+                        data.services.forEach(function(service, index) {
+                            var delay = index * 100;
+                            var numStr = padLeft2(index + 1);
+                            // Escape per evitare problemi in onclick/HTML
+                            var safeTitleAttr = String(service.title || '').replace(/'/g, "\\'");
+                            var title = escapeHtml(service.title);
+                            var description = escapeHtml(service.description);
+                            var price = escapeHtml(service.price);
 
-            // 2. Update Immagine Profilo "Chi Sono"
-            if (data.about && data.about.image && data.about.image.trim() !== '') {
-                const aboutImgEl = document.getElementById('about-img');
-                if (aboutImgEl) {
-                    // Gestione path assoluti/relativi
-                    const imgSrc = data.about.image.replace(/^\/?images/, 'images');
-                    aboutImgEl.style.backgroundImage = `url('${imgSrc}')`;
-                }
-            }
-
-            // 3. Update Servizi
-            if (data.services && data.services.length > 0) {
-                const servicesContainer = document.getElementById('services-container');
-                servicesContainer.innerHTML = ''; // Svuota placeholder
-                data.services.forEach((service, index) => {
-                    const delay = index * 100;
-                    const numStr = (index + 1).toString().padStart(2, '0');
-                    // We escape single quotes in title to prevent JS errors in onclick
-                    const safeTitle = service.title.replace(/'/g, "\\'");
-                    
-                    servicesContainer.innerHTML += `
-                        <div class="service-row fade-in" style="transition-delay: ${delay}ms; cursor: pointer;" onclick="document.getElementById('service').value = '${safeTitle}'; window.location.href='#contact';">
-                            <div class="service-number">${numStr}</div>
-                            <div class="service-content">
-                                <h3 class="service-title">${service.title}</h3>
-                                <p class="service-desc">${service.description}</p>
-                            </div>
-                            <div class="service-price">${service.price}</div>
-                        </div>
-                    `;
-                });
-                servicesContainer.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
-            }
-
-            // 4. Update Galleria Masonry
-            if (data.gallery && data.gallery.length > 0) {
-                const galleryContainer = document.getElementById('gallery-container');
-                galleryContainer.innerHTML = ''; // Svuota placeholder
-                data.gallery.forEach((item, index) => {
-                    const delay = index * 100;
-                    // Alterna aspect ratio nei fallback grigi (stile masonry)
-                    const aspect = index % 2 === 0 ? 'aspect-vertical' : 'aspect-square';
-                    const hasImage = item.image && item.image.trim() !== '';
-                    
-                    const imgSrc = hasImage ? item.image.replace(/^\/?images/, 'images') : '';
-                    const imageHTML = hasImage 
-                        ? `<img src="${imgSrc}" alt="${item.title}" style="aspect-ratio: ${index%2===0 ? '2/3' : '1/1'}; object-fit: cover; width: 100%;">`
-                        : `<div class="img-placeholder bg-gray ${aspect}"></div>`;
-
-                    galleryContainer.innerHTML += `
-                        <div class="gallery-item fade-in" style="transition-delay: ${delay}ms; cursor: pointer;">
-                            ${imageHTML}
-                            <div class="gallery-overlay">
-                                <h3 class="gallery-title">${item.title}</h3>
-                            </div>
-                        </div>
-                    `;
-                });
-                // Ricollega observer e aggiungi logica Lightbox
-                galleryContainer.querySelectorAll('.gallery-item').forEach((el, idx) => {
-                    const itemData = data.gallery[idx];
-                    
-                    // Fade-in observer
-                    if(el.classList.contains('fade-in')) fadeObserver.observe(el);
-                    
-                    // Click to open lightbox
-                    el.addEventListener('click', () => {
-                        const lightbox = document.getElementById('lightbox');
-                        const lightboxImg = document.getElementById('lightbox-img');
-                        const lightboxCaption = document.getElementById('lightbox-caption');
-                        
-                        if (lightbox && itemData.image) {
-                            lightboxImg.src = itemData.image.replace(/^\/?images/, 'images');
-                            lightboxCaption.textContent = itemData.title;
-                            lightbox.classList.add('active');
-                            document.body.style.overflow = 'hidden'; // blocca lo scroll
+                            servicesContainer.innerHTML +=
+                                '<div class="service-row fade-in" style="transition-delay: ' + delay + 'ms; cursor: pointer;" onclick="var s=document.getElementById(\'service\'); if(s){s.value=\'' + safeTitleAttr + '\';} window.location.href=\'#contact\';">' +
+                                    '<div class="service-number">' + numStr + '</div>' +
+                                    '<div class="service-content">' +
+                                        '<h3 class="service-title">' + title + '</h3>' +
+                                        '<p class="service-desc">' + description + '</p>' +
+                                    '</div>' +
+                                    '<div class="service-price">' + price + '</div>' +
+                                '</div>';
+                        });
+                        if (fadeObserver) {
+                            servicesContainer.querySelectorAll('.fade-in').forEach(function(el) { fadeObserver.observe(el); });
+                        } else {
+                            servicesContainer.querySelectorAll('.fade-in').forEach(function(el) { el.classList.add('visible'); });
                         }
-                    });
-                });
-                
-                // Opzionale: update cursor bindings sui nuovi elementi
-                if (!isTouchDevice && cursor) {
-                    const newInteractive = galleryContainer.querySelectorAll('.gallery-item');
-                    newInteractive.forEach(el => {
-                        el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-                        el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-                    });
+                    }
                 }
-            }
 
-            // 5. Aggiornamento Titoli SEO
-            if (data.seo) {
-                if(data.seo.title) document.title = data.seo.title;
-                if(data.seo.description) {
-                    const metaDesc = document.querySelector('meta[name="description"]');
-                    if (metaDesc) metaDesc.setAttribute('content', data.seo.description);
+                // 4. Update Galleria Masonry
+                if (data.gallery && data.gallery.length > 0) {
+                    var galleryContainer = document.getElementById('gallery-container');
+                    if (galleryContainer) {
+                        galleryContainer.innerHTML = ''; // Svuota placeholder
+                        data.gallery.forEach(function(item, index) {
+                            var delay = index * 100;
+                            // Alterna aspect ratio nei fallback grigi (stile masonry)
+                            var aspect = index % 2 === 0 ? 'aspect-vertical' : 'aspect-square';
+                            var hasImage = item.image && item.image.trim() !== '';
+
+                            var imgSrc = hasImage ? item.image.replace(/^\/?images/, 'images') : '';
+                            var aspectRatio = index % 2 === 0 ? '2/3' : '1/1';
+                            var safeTitle = escapeHtml(item.title);
+                            var imageHTML = hasImage
+                                ? '<img src="' + imgSrc + '" alt="' + safeTitle + '" style="aspect-ratio: ' + aspectRatio + '; object-fit: cover; width: 100%;">'
+                                : '<div class="img-placeholder bg-gray ' + aspect + '"></div>';
+
+                            galleryContainer.innerHTML +=
+                                '<div class="gallery-item fade-in" style="transition-delay: ' + delay + 'ms; cursor: pointer;">' +
+                                    imageHTML +
+                                    '<div class="gallery-overlay">' +
+                                        '<h3 class="gallery-title">' + safeTitle + '</h3>' +
+                                    '</div>' +
+                                '</div>';
+                        });
+                        // Ricollega observer e aggiungi logica Lightbox
+                        galleryContainer.querySelectorAll('.gallery-item').forEach(function(el, idx) {
+                            var itemData = data.gallery[idx];
+
+                            // Fade-in observer
+                            if (el.classList.contains('fade-in')) {
+                                if (fadeObserver) {
+                                    fadeObserver.observe(el);
+                                } else {
+                                    el.classList.add('visible');
+                                }
+                            }
+
+                            // Click to open lightbox
+                            el.addEventListener('click', function() {
+                                var lb = document.getElementById('lightbox');
+                                var lbImg = document.getElementById('lightbox-img');
+                                var lbCaption = document.getElementById('lightbox-caption');
+
+                                if (lb && itemData && itemData.image) {
+                                    if (lbImg) lbImg.src = itemData.image.replace(/^\/?images/, 'images');
+                                    if (lbCaption) lbCaption.textContent = itemData.title;
+                                    lb.classList.add('active');
+                                    document.body.style.overflow = 'hidden'; // blocca lo scroll
+                                }
+                            });
+                        });
+
+                        // Opzionale: update cursor bindings sui nuovi elementi
+                        if (!isTouchDevice && cursor) {
+                            var newInteractive = galleryContainer.querySelectorAll('.gallery-item');
+                            newInteractive.forEach(function(el) {
+                                el.addEventListener('mouseenter', function() { cursor.classList.add('hover'); });
+                                el.addEventListener('mouseleave', function() { cursor.classList.remove('hover'); });
+                            });
+                        }
+                    }
                 }
-            }
 
-        } catch (error) {
-            console.warn('CMS data.json fetch fallito. Caricamento contenuti HTML di default.', error);
-        }
-    };
+                // 5. Aggiornamento Titoli SEO
+                if (data.seo) {
+                    if (data.seo.title) document.title = data.seo.title;
+                    if (data.seo.description) {
+                        var metaDesc = document.querySelector('meta[name="description"]');
+                        if (metaDesc) metaDesc.setAttribute('content', data.seo.description);
+                    }
+                }
+            })
+            .catch(function(error) {
+                console.warn('CMS data.json fetch fallito. Caricamento contenuti HTML di default.', error);
+            });
+    }
 
     fetchCMSData();
 
     /* =========================================================================
        6. Auto-Update Anno Footer
        ========================================================================= */
-    const yearEl = document.getElementById('year');
+    var yearEl = document.getElementById('year');
     if (yearEl) {
         yearEl.textContent = new Date().getFullYear();
     }
@@ -291,53 +347,58 @@ document.addEventListener('DOMContentLoaded', () => {
     /* =========================================================================
        7. Lightbox Close Logic
        ========================================================================= */
-    const lightbox = document.getElementById('lightbox');
-    const lightboxClose = document.getElementById('lightbox-close');
+    var lightbox = document.getElementById('lightbox');
+    var lightboxClose = document.getElementById('lightbox-close');
 
     if (lightbox && lightboxClose) {
-        const closeLightbox = () => {
+        var closeLightbox = function() {
             lightbox.classList.remove('active');
             document.body.style.overflow = ''; // ripristina scroll
         };
 
         lightboxClose.addEventListener('click', closeLightbox);
-        
+
         // Chiudi cliccando fuori dall'immagine
-        lightbox.addEventListener('click', (e) => {
+        lightbox.addEventListener('click', function(e) {
             if (e.target === lightbox) {
                 closeLightbox();
             }
         });
-        
+
         // Chiudi con Esc
-        document.addEventListener('keydown', (e) => {
+        document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' && lightbox.classList.contains('active')) {
                 closeLightbox();
             }
         });
     }
+
     /* =========================================================================
        8. Netlify Form — JS Submit per redirect affidabile a success.html
        ========================================================================= */
-    const bookingForm = document.querySelector('form[name="booking"]');
+    var bookingForm = document.querySelector('form[name="booking"]');
     if (bookingForm) {
         bookingForm.addEventListener('submit', function(e) {
             e.preventDefault(); // Blocca il submit nativo
 
-            const formData = new FormData(bookingForm);
+            var formData = new FormData(bookingForm);
+
+            if (typeof fetch === 'undefined') {
+                // Fallback per browser senza fetch: submit nativo
+                bookingForm.submit();
+                return;
+            }
 
             fetch('/', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams(formData).toString(),
+                body: new URLSearchParams(formData).toString()
             })
-            .then(() => {
-                // Redirect manuale alla pagina di successo
+            .then(function() {
                 window.location.href = '/success.html';
             })
-            .catch((error) => {
+            .catch(function(error) {
                 console.error('Errore nell\'invio del form:', error);
-                // Anche in caso di errore di rete, redirect (Netlify ha probabilmente ricevuto i dati)
                 window.location.href = '/success.html';
             });
         });

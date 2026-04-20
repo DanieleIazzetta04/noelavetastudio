@@ -7,6 +7,19 @@ function renderMultilineText(text) {
   return text.split('\n').filter(function(p) { return p.trim() !== ''; }).map(function(p) { return '<p>' + p + '</p>'; }).join('');
 }
 
+// Helper sicuro per risolvere immagini — evita crash se getAsset ritorna null/undefined
+function safeAssetUrl(getAsset, imagePath) {
+  if (!imagePath) return '';
+  try {
+    var asset = getAsset(imagePath);
+    if (!asset) return '';
+    var url = asset.toString();
+    return (url && url !== 'null' && url !== 'undefined') ? url : '';
+  } catch (e) {
+    return '';
+  }
+}
+
 // 2. Crea un layout visuale personalizzato per la "Homepage Edit"
 var HomepagePreview = createClass({
   render: function() {
@@ -32,10 +45,13 @@ var HomepagePreview = createClass({
       h('section', { className: 'about-section', id: 'about' },
         h('div', { className: 'container about-grid' },
           h('div', { className: 'about-image-wrapper ' + visibleClass },
-            h('div', { 
-              className: 'about-image', 
-              style: data.about && data.about.image ? { backgroundImage: 'url(' + getAsset(data.about.image).toString() + ')' } : {}
-            })
+            (function() {
+              var aboutImgUrl = data.about ? safeAssetUrl(getAsset, data.about.image) : '';
+              return h('div', {
+                className: 'about-image',
+                style: aboutImgUrl ? { backgroundImage: 'url(' + aboutImgUrl + ')' } : {}
+              });
+            })()
           ),
           h('div', { className: 'about-text-wrapper ' + visibleClass },
             h('h2', { className: 'section-title' }, data.about ? data.about.title : ''),
@@ -78,12 +94,12 @@ var HomepagePreview = createClass({
           h('div', { className: 'gallery-masonry' },
             (data.gallery || []).map(function(item, index) {
               var isVertical = index % 2 === 0;
-              var hasImage = !!item.image;
-              var imgSrc = hasImage ? getAsset(item.image).toString() : '';
+              var imgSrc = safeAssetUrl(getAsset, item.image);
+              var hasImage = !!imgSrc;
 
               return h('div', { className: 'gallery-item ' + visibleClass, key: index },
-                hasImage 
-                  ? h('img', { 
+                hasImage
+                  ? h('img', {
                       src: imgSrc, 
                       alt: item.title, 
                       style: { aspectRatio: isVertical ? '2/3' : '1/1', objectFit: 'cover', width: '100%', display: 'block' } 

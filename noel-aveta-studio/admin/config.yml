@@ -11,8 +11,9 @@ backend:
 media_folder: "noel-aveta-studio/images/uploads"
 public_folder: "/images/uploads"
 
-# Logo visibile nel pannello di amministrazione
-logo_url: "/images/uploads/logo.png"
+# URL del sito pubblicato (sostituisci con l'URL reale di Netlify)
+# site_url: "https://TUO-SITO.netlify.app"
+# display_url: "https://TUO-SITO.netlify.app"
 
 locale: "it"
 
