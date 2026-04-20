@@ -11,9 +11,9 @@ backend:
 media_folder: "noel-aveta-studio/images/uploads"
 public_folder: "/images/uploads"
 
-# URL del sito pubblicato (sostituisci con l'URL reale di Netlify)
-# site_url: "https://TUO-SITO.netlify.app"
-# display_url: "https://TUO-SITO.netlify.app"
+# URL del sito pubblicato (usato per i link di preview dall'admin)
+site_url: "https://noelavetastudio.netlify.app"
+display_url: "https://noelavetastudio.netlify.app"
 
 locale: "it"
 
