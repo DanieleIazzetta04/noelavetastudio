@@ -56,17 +56,17 @@
   "gallery": [
     {
       "title": "Dettagli in studio",
-      "image": "/images/uploads/gallery-4.png",
+      "image": "/images/uploads/studio.jpg",
       "aspect": "square"
     },
     {
       "title": "Ritratto Fine Art",
-      "image": "/images/uploads/gallery-5.png",
+      "image": "/images/uploads/_dsc3114.jpg",
       "aspect": "vertical"
     },
     {
-      "title": "Scatti rubati",
-      "image": "/images/uploads/gallery-6.png",
+      "title": "Maternity",
+      "image": "/images/uploads/panc.jpg",
       "aspect": "square"
     }
   ],
